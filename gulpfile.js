@@ -4,25 +4,30 @@ var gulp = require('gulp');
 var gutil = require('gulp-util');
 
 // Add your require statements and gulp tasks here
-
-// var clean = require('gulp-clean');
  
 var del = require('del');
 
 gulp.task('clean', function (cb) {
   
-  del('./js/bundle.js', cb)
+  del('./js/bundle.js', cb);
 
 });
 
 var jshint = require('gulp-jshint');
  
 gulp.task('lint', function() {
-  return gulp.src('./js/index.js')
+  return gulp.src(['./js/*.js', '!./js/bundle.js'])
     .pipe(jshint())
     .pipe(jshint.reporter('default'));
 });
 
+var watch = require('gulp-watch');
+
+gulp.task('watch', function () {
+    gulp.watch(['./js/*.js', '!./js/bundle.js'], ['build'])
+});
+
+gulp.task('default', ['build', 'lint']);
 
 //
 

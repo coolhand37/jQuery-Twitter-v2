@@ -16,6 +16,7 @@
     "gulp-jshint": "^1.11.2",
     "gulp-serve": "^1.0.0",
     "gulp-util": "^3.0.5",
+    "gulp-watch": "^4.3.2",
     "hbsfy": "^2.2.1",
     "json-server": "^0.7.12",
     "vinyl-source-stream": "^1.1.0"
