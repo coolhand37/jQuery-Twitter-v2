@@ -30,7 +30,7 @@ gulp.task('watch', function () {
 gulp.task('default', ['build', 'lint']);
 
 //
-
+ 
 // Browserify
 var source = require('vinyl-source-stream');
 var browserify = require('browserify');
