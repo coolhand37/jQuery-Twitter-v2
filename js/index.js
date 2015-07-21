@@ -17,12 +17,6 @@ $(function () {
 	  id: 1
 	};
 
-
-
-
-	// $.get(baseUrl + '/users')
-		
-	// }); 
 	
 	
 	function getUsers () {
@@ -31,7 +25,6 @@ $(function () {
 
 	function getUserData (users) {
 		users.forEach(function (user) {
-			// console.log('user data', user)
 			$.get(baseUrl + '/users/' + user.id + '/tweets')
 				.done(function (usertweets) {
 					usertweets.forEach(function (tweet) {
