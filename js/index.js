@@ -150,7 +150,7 @@ $('#main').on('click', '.tweet', function () {
 	var tweetId = $(this).attr('id').substring(6);
 
 	var replies = repliesCache.filter(function(reply) {
-		return (reply.tweetId == tweetId);
+		return reply.tweetId == tweetId;
 	});
 
 	var repliesContainer = $(this).siblings('.replies');
