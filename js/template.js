@@ -8,7 +8,7 @@ var thread = require('../templates/thread.handlebars');
 
 
 module.exports = {
-  Handlebars: Handlebars,
+	
   tweet: tweet,
   compose: compose,
   thread: thread

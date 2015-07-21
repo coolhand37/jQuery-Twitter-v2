@@ -2,26 +2,27 @@
 
 var $ = require('jquery');
 
+var baseUrl = 'http://localhost:3000';
+
+var repliesCache = $.get(baseUrl + '/replies');
+
+var allUsers = $.get(baseUrl + '/users');
+
 $(function () { 
 
 	var template = require('./template');
-
-	var allUsers = [];
 	var currentUser = {
 	  handle: '@bradwestfall',
 	  img: 'brad.png',
 	  id: 1
 	};
 
-	var repliesCache = [];
-
-	var baseUrl = 'http://localhost:3000';
 
 
-	$.get(baseUrl + '/users')
-		.done(function (users) {
-			allUsers = users;
-	}); 
+
+	// $.get(baseUrl + '/users')
+		
+	// }); 
 	
 	
 	function getUsers () {
@@ -38,21 +39,20 @@ $(function () {
 						console.log(tweet.id);
 					});
 				}).fail(function (xhr) {
-				 	// console.log('user ' + user.id + ' tweets request failed')
+				 	console.log('user ' + user.id + ' tweets request failed', xhr.status)
 					});
 		});
 	}
 
 	getUsers()
 	 .done(getUserData)
-	 .fail(function(xhr) {
+	 .fail(function (xhr) {
 			console.log('user data request error', xhr.status);
 		});
 
 	function getReplies() {
 			$.get(baseUrl + '/replies')
 				.done(function (replies) {
-
 					repliesCache = replies;
 				});
 	}
@@ -146,6 +146,7 @@ $('#main').on('click', 'button', function () {
 $('#main').on('click', '.tweet', function () {
 	
 	$(this).parents('.thread').toggleClass('expand');
+	
 	var tweetId = $(this).attr('id').substring(6);
 
 	var replies = repliesCache.filter(function(reply) {
@@ -159,12 +160,17 @@ $('#main').on('click', '.tweet', function () {
 	replies.forEach(function (reply) {
 		
 		var replyOwner;
-		allUsers.forEach(function (user) {
-			if (user.id === reply.userId) {
-				replyOwner = user;
-			}
+		
+		allUsers
+			.done(function (users) {
+				users.forEach(function (user) {
+					if (user.id === reply.userId) {
+						replyOwner = user;
+					}
 
-		});
+				});
+			
+			});
 		
 		repliesContainer.append(renderTweet(replyOwner, reply.message, reply.id));
 

@@ -21,8 +21,6 @@ gulp.task('lint', function() {
     .pipe(jshint.reporter('default'));
 });
 
-var watch = require('gulp-watch');
-
 gulp.task('watch', function () {
     gulp.watch(['./js/*.js', '!./js/bundle.js'], ['build'])
 });
