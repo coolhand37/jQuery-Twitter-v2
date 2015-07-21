@@ -8,16 +8,16 @@ var repliesCache = $.get(baseUrl + '/replies');
 
 var allUsers = $.get(baseUrl + '/users');
 
+var template = require('./template');
+
+var currentUser = {
+  handle: '@bradwestfall',
+  img: 'brad.png',
+  id: 1
+};
+
 $(function () { 
 
-	var template = require('./template');
-	var currentUser = {
-	  handle: '@bradwestfall',
-	  img: 'brad.png',
-	  id: 1
-	};
-
-	
 	
 	function getUsers () {
 		return $.get(baseUrl + '/users');
